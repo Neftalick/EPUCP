@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "128301510920",
+    "project_id": "epucp-a998b",
+    "storage_bucket": "epucp-a998b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128301510920:android:7cbac9ed967047ede13cbd",
+        "android_client_info": {
+          "package_name": "com.example.epucp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128301510920-3ha7pr9ls4benrtq3msbl4hn5j0sssqm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpy4mo6TzE-ELIQ4lRY7fyTVmZ8d7RYEs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "128301510920-3ha7pr9ls4benrtq3msbl4hn5j0sssqm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
