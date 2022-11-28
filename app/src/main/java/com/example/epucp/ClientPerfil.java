@@ -19,7 +19,7 @@ public class ClientPerfil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_perfil);
         //Variables
-        ImageView imageView = findViewById(R.id.imageView_client_perfil);
+        //ImageView imageView = findViewById(R.id.imageView_client_perfil);
         TextView textView = findViewById(R.id.textView_client_perfil_detalle);
         //Obtenemos los datos
 

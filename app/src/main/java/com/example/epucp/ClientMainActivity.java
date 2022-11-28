@@ -41,7 +41,7 @@ public class ClientMainActivity extends AppCompatActivity {
     }
 
     private void getItems(){
-        firebaseDatabase.getReference().child("events").addValueEventListener(new ValueEventListener() {
+        firebaseDatabase.getReference().child("eventos").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot children : snapshot.getChildren()){

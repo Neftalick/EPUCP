@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.epucp">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -16,29 +17,41 @@
         android:theme="@style/Theme.EPUCP"
         tools:targetApi="31">
         <activity
+            android:name=".RegistrarUsuario"
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".CreateEventActivity"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".AdminMainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".InformacionEventoClient"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".ClientMainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".ClientPerfil"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".ClientMainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".ClientHistorial"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".ClientMainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

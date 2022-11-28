@@ -1,6 +1,7 @@
 package com.example.epucp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +12,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.epucp.dto.Evento;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.InputStream;
 import java.util.List;
 
 public class ListEventClientAdapter extends RecyclerView.Adapter<ListEventClientAdapter.EventViewHolder> {
@@ -61,7 +64,17 @@ public class ListEventClientAdapter extends RecyclerView.Adapter<ListEventClient
         ImageView imageView = holder.itemView.findViewById(R.id.imageView_cliente);
         TextView textView = holder.itemView.findViewById(R.id.tw_detalle_cliente);
         Button button = holder.itemView.findViewById(R.id.btn_asistencia_cliente);
-
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),InformacionEventoClient.class);
+                intent.putExtra("evento",e);
+                getContext().startActivity(intent);
+            }
+        });
+        textView.setText(e.getDetalleAImprimir());
+        StorageReference imageRef = storageReference.child("img/"+e.getFilename());
+        Glide.with(getContext()).load(imageRef).into(imageView);
     }
 
     @Override

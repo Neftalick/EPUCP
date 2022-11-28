@@ -38,16 +38,7 @@ public class Evento implements Serializable {
         this.key = key;
     }
 
-    public String getDetalle(){
-        return "Nombre: "+this.nombre+"\n"+
-                "Descrición: "+this.descripcion+"\n"+
-                "Facultad: "+this.facultad+"\n"+
-                "Aula: "+this.aula+"\n"+
-                "Fecha: "+this.fecha+"\n"+
-                "Hora: "+this.hora+"\n"+
-                "Responsable: "+this.responsable+"\n";
 
-    }
 
     public String getNombre() {
         return nombre;
@@ -119,5 +110,16 @@ public class Evento implements Serializable {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public String getDetalleAImprimir(){
+        return "Nombre: "+this.nombre+"\n"+
+                "Descrición: "+this.descripcion+"\n"+
+                "Facultad: "+this.facultad+"\n"+
+                "Aula: "+this.aula+"\n"+
+                "Fecha: "+this.fecha+"\n"+
+                "Hora: "+this.hora+"\n"+
+                "Responsable: "+this.responsable+"\n";
+
     }
 }

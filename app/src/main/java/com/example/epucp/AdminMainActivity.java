@@ -7,8 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.epucp.dto.Evento;
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,7 +40,7 @@ public class AdminMainActivity extends AppCompatActivity {
     }
 
     public void getItems(){
-        firebaseDatabase.getReference().child("events").addValueEventListener(new ValueEventListener() {
+        firebaseDatabase.getReference().child("eventos").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot children : snapshot.getChildren()){
@@ -53,5 +59,28 @@ public class AdminMainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.cerrar_sesion:
+                AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.d("Sistema","Logout exitoso");
+                        Intent intent = new Intent(AdminMainActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

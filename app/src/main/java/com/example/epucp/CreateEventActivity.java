@@ -33,7 +33,7 @@ import java.util.Date;
 
 public class CreateEventActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    DatabaseReference databaseReference = firebaseDatabase.getReference();
+    DatabaseReference databaseReference = firebaseDatabase.getReference().child("eventos");
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageReference = storage.getReference();
     Evento evento;
@@ -50,6 +50,9 @@ public class CreateEventActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent intent = getIntent();
+        Boolean editar = intent.hasExtra("evento");
+        Evento eventoEditar = (Evento) intent.getSerializableExtra("evento");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
         nombre = (EditText) findViewById(R.id.CEvent_Nombre);
@@ -61,9 +64,18 @@ public class CreateEventActivity extends AppCompatActivity {
         facultad = (Spinner) findViewById(R.id.CEvent_Facultad);
         subirImagenbtn = (Button) findViewById(R.id.btn_subirImagen);
         crearEvento = (FloatingActionButton) findViewById(R.id.CEvento_btn);
-        String[] lista = {"Item 1","Item 2","Item 3","Item 4"};
+        String[] lista = {"Ciencias e Ingenieria","Generales Ciencias","Generales Letras","Sociales","Ingenieria de telecomunicaciones","Ingenieria electronica","Ingenieria informatica","Ingenieria Mecanica","Ingenieria Industrial"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,lista);
         facultad.setAdapter(adapter);
+        if (editar){
+            nombre.setText(eventoEditar.getNombre());
+            responsable.setText(eventoEditar.getResponsable());
+            descripcion.setText(eventoEditar.getDescripcion());
+            aula.setText(eventoEditar.getAula());
+            fecha.setText(eventoEditar.getFecha());
+            hora.setText(eventoEditar.getHora());
+        }
+
         subirImagenbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,9 +93,9 @@ public class CreateEventActivity extends AppCompatActivity {
                     SimpleDateFormat outSdf = new SimpleDateFormat("yyyy-MM-dd");
                     Date currentDate = outSdf.parse(strDate);
                     Date fechaIngresada = outSdf.parse(outSdf.format(inSdf.parse(fecha.getText().toString())));
-                    if (fechaIngresada.after(currentDate)){
-                        if(false){
-                            /**String filename = "";
+                    if (fechaIngresada.before(currentDate)){
+                        if(editar){
+                            String filename = "";
                             if(imageUri!=null){
                                 String[] path= imageUri.toString().split("/");
                                 filename = path[path.length-1];
@@ -91,14 +103,15 @@ public class CreateEventActivity extends AppCompatActivity {
                                 imageReference.putFile(imageUri).addOnSuccessListener(taskSnapshot ->
                                         Log.d("msg","Archivo Subido correctamente")).addOnFailureListener(e->Log.d("msg","Error",e.getCause()));
                             }
-                            databaseReference.child(actividad.getKey()).child("descripcion").setValue(descripcion.getText().toString());
-                            databaseReference.child(actividad.getKey()).child("fechaFin").setValue(fechaFin.getText().toString());
-                            databaseReference.child(actividad.getKey()).child("fechaInicio").setValue(fechaInicio.getText().toString());
-                            databaseReference.child(actividad.getKey()).child("horaFin").setValue(horaFin.getText().toString());
-                            databaseReference.child(actividad.getKey()).child("horaInicio").setValue(horaInicio.getText().toString());
-                            databaseReference.child(actividad.getKey()).child("titulo").setValue(titulo.getText().toString());
-                            databaseReference.child(actividad.getKey()).child("filename").setValue(imageUri!=null?filename:actividad.getFilename());
-                            Toast.makeText(ActualizaAgendaActivity.this, "Data Actualizada correctamente", Toast.LENGTH_SHORT).show();***/
+                            databaseReference.child(eventoEditar.getKey()).child("descripcion").setValue(descripcion.getText().toString());
+                            databaseReference.child(eventoEditar.getKey()).child("nombre").setValue(nombre.getText().toString());
+                            databaseReference.child(eventoEditar.getKey()).child("fecha").setValue(fecha.getText().toString());
+                            databaseReference.child(eventoEditar.getKey()).child("hora").setValue(hora.getText().toString());
+                            databaseReference.child(eventoEditar.getKey()).child("respnsable").setValue(responsable.getText().toString());
+                            databaseReference.child(eventoEditar.getKey()).child("aula").setValue(aula.getText().toString());
+                            databaseReference.child(eventoEditar.getKey()).child("facultad").setValue(facultad.getSelectedItem().toString());
+                            databaseReference.child(eventoEditar.getKey()).child("filename").setValue(imageUri!=null?filename:eventoEditar.getFilename());
+                            Toast.makeText(CreateEventActivity.this, "Data Actualizada correctamente", Toast.LENGTH_SHORT).show();
                         }else{
                             //Creacion
                             if(imageUri!=null){
@@ -110,12 +123,11 @@ public class CreateEventActivity extends AppCompatActivity {
                                 //Guardo el valor en la base de datos
                                 String keyActividad = databaseReference.push().getKey();
                                 //Actividad actividad = new Actividad(fechaFin.getText().toString(),horaFin.getText().toString(),fechaInicio.getText().toString(),horaInicio.getText().toString(),titulo.getText().toString(),descripcion.getText().toString(),filename,keyActividad);
-                                Evento evento = new Evento(nombre.getText().toString(),responsable.getText().toString(),descripcion.getText().toString(),facultad.getSelectedItem().toString(),aula.getText().toString(),fecha.getText().toString(),hora.getText().toString());
+                                Evento evento = new Evento(nombre.getText().toString(),responsable.getText().toString(),descripcion.getText().toString(),facultad.getSelectedItem().toString(),aula.getText().toString(),fecha.getText().toString(),hora.getText().toString(),filename,keyActividad);
                                 databaseReference.child(keyActividad).setValue(evento);
                                 nombre.setText("");
                                 responsable.setText("");
                                 descripcion.setText("");
-                                //facultad
                                 aula.setText("");
                                 fecha.setText("");
                                 hora.setText("");

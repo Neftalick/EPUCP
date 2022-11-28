@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#042354"
+    tools:context=".RegistrarUsuario">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputPassword_registro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Contraseña"
+        app:endIconMode="password_toggle"
+        app:layout_constraintEnd_toEndOf="@+id/inputCorreo_registro"
+        app:layout_constraintStart_toStartOf="@+id/inputCorreo_registro"
+        app:layout_constraintTop_toBottomOf="@+id/inputCorreo_registro">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="302dp"
+            android:layout_height="50dp"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputVerifyPassword_registro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Verificar contraseña"
+        app:endIconMode="password_toggle"
+        app:layout_constraintEnd_toEndOf="@+id/inputPassword_registro"
+        app:layout_constraintStart_toStartOf="@+id/inputPassword_registro"
+        app:layout_constraintTop_toBottomOf="@+id/inputPassword_registro">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="302dp"
+            android:layout_height="50dp"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputCorreo_registro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:hint="Correo"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="302dp"
+            android:layout_height="50dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="196dp"
+        android:text="Registro de usuario"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_registrarse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:onClick="validarRegistro"
+        android:text="REGISTRARSE"
+        app:layout_constraintEnd_toEndOf="@+id/inputVerifyPassword_registro"
+        app:layout_constraintStart_toStartOf="@+id/inputVerifyPassword_registro"
+        app:layout_constraintTop_toBottomOf="@+id/inputVerifyPassword_registro" />
+</androidx.constraintlayout.widget.ConstraintLayout>
