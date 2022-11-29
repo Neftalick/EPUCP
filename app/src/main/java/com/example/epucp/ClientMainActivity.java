@@ -7,9 +7,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 
 import com.example.epucp.dto.Evento;
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -32,7 +38,7 @@ public class ClientMainActivity extends AppCompatActivity {
         //Funcionamientos de los botones
         historial.setOnClickListener(view -> {
             Intent intent = new Intent(ClientMainActivity.this,ClientHistorial.class);
-
+            intent.putExtra("key",intent1.getStringExtra("key"));
             startActivity(intent);
         });
         Perfil.setOnClickListener(view -> {
@@ -64,6 +70,34 @@ public class ClientMainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.cerrar_sesion:
+                AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.d("Sistema","Logout exitoso");
+                        Intent intent = new Intent(ClientMainActivity
+
+
+
+
+                                .this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

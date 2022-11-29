@@ -107,7 +107,7 @@ public class CreateEventActivity extends AppCompatActivity {
                             databaseReference.child(eventoEditar.getKey()).child("nombre").setValue(nombre.getText().toString());
                             databaseReference.child(eventoEditar.getKey()).child("fecha").setValue(fecha.getText().toString());
                             databaseReference.child(eventoEditar.getKey()).child("hora").setValue(hora.getText().toString());
-                            databaseReference.child(eventoEditar.getKey()).child("respnsable").setValue(responsable.getText().toString());
+                            databaseReference.child(eventoEditar.getKey()).child("responsable").setValue(responsable.getText().toString());
                             databaseReference.child(eventoEditar.getKey()).child("aula").setValue(aula.getText().toString());
                             databaseReference.child(eventoEditar.getKey()).child("facultad").setValue(facultad.getSelectedItem().toString());
                             databaseReference.child(eventoEditar.getKey()).child("filename").setValue(imageUri!=null?filename:eventoEditar.getFilename());

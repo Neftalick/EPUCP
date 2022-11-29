@@ -5,7 +5,10 @@ public class Usuario {
     private String rol;
     private String key;
 
-
+    public Usuario(String correo, String key){
+        this.correo = correo;
+        this.key = key;
+    }
 
     public Usuario() {
     }
