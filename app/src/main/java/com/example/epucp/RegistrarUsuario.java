@@ -89,6 +89,7 @@ public class RegistrarUsuario extends AppCompatActivity {
                                 String key = databaseReference.push().getKey();
                                 databaseReference.child(key).child("correo").setValue(correo.getEditText().getText().toString());
                                 databaseReference.child(key).child("rol").setValue("administrador");
+                                databaseReference.child(key).child("key").setValue(key);
                                 Intent intent = new Intent(RegistrarUsuario.this, MainActivity.class);
                                 intent.putExtra("exito", "Se ha enviado un correo para la verificación de su cuenta");
                                 startActivity(intent);

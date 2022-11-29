@@ -23,6 +23,7 @@ public class ClientMainActivity extends AppCompatActivity {
     private List<Evento> eventoList = new ArrayList<Evento>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent intent1 = getIntent();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_main);
         //Definimos los botones
@@ -31,10 +32,12 @@ public class ClientMainActivity extends AppCompatActivity {
         //Funcionamientos de los botones
         historial.setOnClickListener(view -> {
             Intent intent = new Intent(ClientMainActivity.this,ClientHistorial.class);
+
             startActivity(intent);
         });
         Perfil.setOnClickListener(view -> {
             Intent intent = new Intent(ClientMainActivity.this,ClientPerfil.class);
+
             startActivity(intent);
         });
         getItems();
@@ -49,6 +52,7 @@ public class ClientMainActivity extends AppCompatActivity {
                     eventoList.add(evento);
                 }
                 ListEventClientAdapter eventClientAdapter = new ListEventClientAdapter();
+                eventClientAdapter.setKey(getIntent().getStringExtra("key"));
                 eventClientAdapter.setEventoList(eventoList);
                 eventClientAdapter.setContext(ClientMainActivity.this);
                 RecyclerView recyclerView = findViewById(R.id.recyclerView_client_main);

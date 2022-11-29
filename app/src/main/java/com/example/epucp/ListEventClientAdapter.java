@@ -26,6 +26,15 @@ public class ListEventClientAdapter extends RecyclerView.Adapter<ListEventClient
     StorageReference storageReference = storage.getReference();
     private List<Evento> eventoList;
     private Context context;
+    private String key;
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public List<Evento> getEventoList() {
         return eventoList;
@@ -68,6 +77,8 @@ public class ListEventClientAdapter extends RecyclerView.Adapter<ListEventClient
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(),InformacionEventoClient.class);
+                System.out.println(getKey());
+                intent.putExtra("key",getKey());
                 intent.putExtra("evento",e);
                 getContext().startActivity(intent);
             }
