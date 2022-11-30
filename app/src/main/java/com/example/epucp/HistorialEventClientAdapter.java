@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.epucp.dto.Evento;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -57,6 +58,9 @@ public class HistorialEventClientAdapter extends RecyclerView.Adapter<HistorialE
         Evento e = eventoList.get(position);
         ImageView imageView = holder.itemView.findViewById(R.id.imageViewHistorialClient);
         TextView textView = holder.itemView.findViewById(R.id.textViewHistorialClient);
+        textView.setText(e.getDetalleAImprimir());
+        StorageReference imageRef = storageReference.child("img/"+e.getFilename());
+        Glide.with(getContext()).load(imageRef).into(imageView);
     }
 
     @Override
