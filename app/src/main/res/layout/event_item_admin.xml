@@ -8,25 +8,24 @@
 
     <ImageView
         android:id="@+id/imageView_item_admin"
-        android:layout_width="130dp"
-        android:layout_height="151dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="14dp"
-        app:layout_constraintBottom_toTopOf="@+id/editar_item_admin"
+        android:layout_width="139dp"
+        android:layout_height="170dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/textView_item_admin"
-        android:layout_width="240dp"
-        android:layout_height="143dp"
+        android:layout_width="222dp"
+        android:layout_height="182dp"
         android:layout_marginStart="11dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageView_item_admin"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,24 +33,25 @@
         android:id="@+id/editar_item_admin"
         android:layout_width="147dp"
         android:layout_height="51dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="14dp"
         android:layout_marginBottom="1dp"
         android:text="Editar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_item_admin" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView_item_admin"
+        app:layout_constraintVertical_bias="0.923" />
 
     <Button
         android:id="@+id/elimanr_item_admin"
         android:layout_width="118dp"
         android:layout_height="51dp"
         android:layout_marginTop="14dp"
-        android:layout_marginEnd="72dp"
+        android:layout_marginEnd="68dp"
         android:layout_marginBottom="1dp"
         android:text="Eliminar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_item_admin"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

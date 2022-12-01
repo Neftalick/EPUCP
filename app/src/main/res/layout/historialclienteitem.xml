@@ -3,31 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="175dp"
+    android:layout_height="195dp"
     android:background="#CFD7E2">
 
     <ImageView
         android:id="@+id/imageViewHistorialClient"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="126dp"
+        android:layout_height="126dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.339"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/textViewHistorialClient"
-        android:layout_width="215dp"
-        android:layout_height="125dp"
+        android:layout_width="234dp"
+        android:layout_height="157dp"
         android:layout_marginTop="17dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="2dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toEndOf="@+id/imageViewHistorialClient"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -111,6 +111,7 @@ public class CreateEventActivity extends AppCompatActivity {
                             databaseReference.child(eventoEditar.getKey()).child("aula").setValue(aula.getText().toString());
                             databaseReference.child(eventoEditar.getKey()).child("facultad").setValue(facultad.getSelectedItem().toString());
                             databaseReference.child(eventoEditar.getKey()).child("filename").setValue(imageUri!=null?filename:eventoEditar.getFilename());
+                            //Consultamos un API que mande el correo con QR
                             Toast.makeText(CreateEventActivity.this, "Data Actualizada correctamente", Toast.LENGTH_SHORT).show();
                         }else{
                             //Creacion

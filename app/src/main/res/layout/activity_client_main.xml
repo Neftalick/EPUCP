@@ -9,14 +9,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_client_main"
-        android:layout_width="411dp"
-        android:layout_height="616dp"
+        android:layout_width="0dp"
+        android:layout_height="561dp"
         android:layout_marginEnd="2dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginBottom="84dp"
         android:background="#042354"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -47,6 +47,31 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView_client_main"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.652" />
+
+    <Button
+        android:id="@+id/button_main_client"
+        android:layout_width="100dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:text="Filtrar"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_main_client"
+        android:layout_width="279dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="3dp"
+        android:background="#FFFFFF"
+        app:layout_constraintEnd_toStartOf="@+id/button_main_client"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
