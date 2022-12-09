@@ -40,9 +40,11 @@ public class AdminMainActivity extends AppCompatActivity {
     }
 
     public void getItems(){
+        eventoList.clear();
         firebaseDatabase.getReference().child("eventos").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                eventoList.clear();
                 for (DataSnapshot children : snapshot.getChildren()){
                     Evento evento = children.getValue(Evento.class);
                     eventoList.add(evento);

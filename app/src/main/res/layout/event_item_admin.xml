@@ -4,54 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#CFD7E2">
+    android:background="#042354">
 
-    <ImageView
-        android:id="@+id/imageView_item_admin"
-        android:layout_width="139dp"
-        android:layout_height="170dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="28dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/textView_item_admin"
-        android:layout_width="222dp"
-        android:layout_height="182dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="16dp"
-        android:text="TextView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="383dp"
+        android:layout_height="278dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="14dp"
+        android:background="#CFD7E2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView_item_admin"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/editar_item_admin"
-        android:layout_width="147dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginBottom="1dp"
-        android:text="Editar"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_item_admin"
-        app:layout_constraintVertical_bias="0.923" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/elimanr_item_admin"
-        android:layout_width="118dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="68dp"
-        android:layout_marginBottom="1dp"
-        android:text="Eliminar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_item_admin"
-        app:layout_constraintVertical_bias="0.0" />
+        <ImageView
+            android:id="@+id/imageView_item_admin"
+            android:layout_width="139dp"
+            android:layout_height="170dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <Button
+            android:id="@+id/elimanr_item_admin"
+            android:layout_width="118dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="53dp"
+            android:layout_marginBottom="6dp"
+            android:text="Eliminar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_item_admin" />
+
+        <TextView
+            android:id="@+id/textView_item_admin"
+            android:layout_width="215dp"
+            android:layout_height="177dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="4dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/editar_item_admin"
+            android:layout_width="147dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Editar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_item_admin" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

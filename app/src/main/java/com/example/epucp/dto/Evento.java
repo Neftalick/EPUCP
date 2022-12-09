@@ -118,8 +118,6 @@ public class Evento implements Serializable {
                 "Facultad: "+this.facultad+"\n"+
                 "Aula: "+this.aula+"\n"+
                 "Fecha: "+this.fecha+"\n"+
-                "Hora: "+this.hora+"\n"+
-                "Responsable: "+this.responsable+"\n";
-
+                "Hora: "+this.hora;
     }
 }

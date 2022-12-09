@@ -1,10 +1,13 @@
 package com.example.epucp;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,10 +22,13 @@ import com.example.epucp.dto.Evento;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,15 +36,16 @@ import java.util.List;
 public class ClientMainActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private List<Evento> eventoList = new ArrayList<Evento>();
+    String key;
     Spinner facultad;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent1 = getIntent();
+        key = intent1.getStringExtra("key");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_main);
         //Definimos los botones
         Button historial = findViewById(R.id.btnClientHistory);
-        Button Perfil = findViewById(R.id.btnClientPerfil);
         facultad = findViewById(R.id.spinner_main_client);
         Button filtrar = findViewById(R.id.button_main_client);
         String[] lista = {"filtrar por facultad","Ciencias e Ingenieria","Generales Ciencias","Generales Letras","Sociales","Ingenieria de telecomunicaciones","Ingenieria electronica","Ingenieria informatica","Ingenieria Mecanica","Ingenieria Industrial"};
@@ -50,11 +57,6 @@ public class ClientMainActivity extends AppCompatActivity {
             intent.putExtra("key",intent1.getStringExtra("key"));
             startActivity(intent);
         });
-        Perfil.setOnClickListener(view -> {
-            Intent intent = new Intent(ClientMainActivity.this,ClientPerfil.class);
-
-            startActivity(intent);
-        });
         filtrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +65,13 @@ public class ClientMainActivity extends AppCompatActivity {
                 }else{
                     getItems();
                 }
+            }
+        });
+        FloatingActionButton floatingActionButton = findViewById(R.id.btn_asistencia);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scanCode();
             }
         });
         getItems();
@@ -99,6 +108,7 @@ public class ClientMainActivity extends AppCompatActivity {
         firebaseDatabase.getReference().child("eventos").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                eventoList.clear();
                 for (DataSnapshot children : snapshot.getChildren()){
                     Evento evento = children.getValue(Evento.class);
                     eventoList.add(evento);
@@ -145,5 +155,30 @@ public class ClientMainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private void scanCode() {
+        ScanOptions options = new ScanOptions();
+        options.setPrompt("Volume up to set flash on");
+        options.setBeepEnabled(true);
+        options.setOrientationLocked(true);
+        options.setCaptureActivity(CaptureAct.class);
+        barLauncher.launch(options);
+    }
+
+    ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result -> {
+        System.out.println(result.getContents());
+        if (result.getContents() != null){
+            AlertDialog.Builder builder = new AlertDialog.Builder(ClientMainActivity.this);
+            builder.setTitle("Result");
+            builder.setMessage(result.getContents());
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    System.out.println(key);
+                    dialogInterface.dismiss();
+                }
+            }).show();
+        }
+    });
 
 }

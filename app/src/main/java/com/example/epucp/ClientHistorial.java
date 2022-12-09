@@ -54,6 +54,7 @@ public class ClientHistorial extends AppCompatActivity {
                 firebaseDatabase.getReference().child("eventos").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        eventoList.clear();
                         for (DataSnapshot children: snapshot.getChildren()){
                             Evento evento = children.getValue(Evento.class);
                             System.out.println("aqui");
