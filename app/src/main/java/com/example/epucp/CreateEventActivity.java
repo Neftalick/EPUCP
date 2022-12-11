@@ -108,7 +108,7 @@ public class CreateEventActivity extends AppCompatActivity {
                     Date currentDate = outSdf.parse(strDate);
                     System.out.println("aqui");
                     Date fechaIngresada = outSdf.parse(outSdf.format(inSdf.parse(fecha.getText().toString())));
-                    if (fechaIngresada.after(currentDate)){
+                    if (fechaIngresada.compareTo(currentDate) >= 0){
                         System.out.println("aqui x3");
                         if(editar){
                             String filename = "";
@@ -144,7 +144,7 @@ public class CreateEventActivity extends AppCompatActivity {
                                 //Actividad actividad = new Actividad(fechaFin.getText().toString(),horaFin.getText().toString(),fechaInicio.getText().toString(),horaInicio.getText().toString(),titulo.getText().toString(),descripcion.getText().toString(),filename,keyActividad);
                                 Evento evento = new Evento(nombre.getText().toString(),responsable.getText().toString(),descripcion.getText().toString(),facultad.getSelectedItem().toString(),aula.getText().toString(),fecha.getText().toString(),hora.getText().toString(),filename,keyActividad);
                                 databaseReference.child(keyActividad).setValue(evento);
-                                String url = "http://ec2-44-211-72-38.compute-1.amazonaws.com/";
+                                String url = "http://ec2-44-202-0-5.compute-1.amazonaws.com/";
                                 System.out.println(url);
                                 System.out.println(responsable.getText().toString());
                                 RequestQueue queue = Volley.newRequestQueue(CreateEventActivity.this);

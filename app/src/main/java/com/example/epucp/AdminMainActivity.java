@@ -65,7 +65,7 @@ public class AdminMainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
+        getMenuInflater().inflate(R.menu.main_menu_administrador,menu);
         return true;
     }
 
@@ -81,6 +81,10 @@ public class AdminMainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
+                return true;
+            case R.id.estadistica:
+                Intent intent = new Intent(AdminMainActivity.this, Estadisticas.class);
+                startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);

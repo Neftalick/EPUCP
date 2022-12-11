@@ -36,11 +36,14 @@ public class ClientHistorial extends AppCompatActivity {
         getItems();
     }
     public void getItems(){
+
         List<Evento> eventoList = new ArrayList<Evento>();
         List<HistoryEvent> historyEventList = new ArrayList<HistoryEvent>();
         firebaseDatabase.getReference().child("historial").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                eventoList.clear();
+                historyEventList.clear();
                 for (DataSnapshot children: snapshot.getChildren()){
                     HistoryEvent historyEvent = children.getValue(HistoryEvent.class);
                     System.out.println("Clave del evento");
@@ -60,9 +63,9 @@ public class ClientHistorial extends AppCompatActivity {
                             System.out.println("aqui");
                             System.out.println(evento.getKey());
                             for (HistoryEvent historyEvent : historyEventList)
-                            if (historyEvent.getEventKey().equals(evento.getKey())){
-                                System.out.println("aqui");
-                                eventoList.add(evento);
+                                if (historyEvent.getEventKey().equals(evento.getKey())){
+                                    System.out.println("aqui");
+                                    eventoList.add(evento);
                             }
                         }
                         HistorialEventClientAdapter eventClientAdapter = new HistorialEventClientAdapter();

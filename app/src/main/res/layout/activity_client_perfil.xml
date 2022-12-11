@@ -7,26 +7,44 @@
     android:background="#042354"
     tools:context=".ClientPerfil">
 
-    <TextView
-        android:id="@+id/textView_client_perfil_detalle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginEnd="177dp"
-        android:layout_marginBottom="445dp"
-        android:text="TextView"
-        android:textColor="#FFFFFF"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="354dp"
+        android:layout_height="630dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="40dp"
+        android:background="#CFD7E2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="137dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="137dp"
-        android:layout_marginBottom="340dp"
-        android:text="Cerrar Sesion"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <ImageView
+            android:id="@+id/foto_perfil"
+            android:layout_width="210dp"
+            android:layout_height="184dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="72dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/informacion_perfil"
+            android:layout_width="304dp"
+            android:layout_height="373dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="7dp"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
