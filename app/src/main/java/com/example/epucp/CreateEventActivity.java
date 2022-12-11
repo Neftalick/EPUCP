@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.example.epucp.dto.Evento;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
@@ -53,11 +55,13 @@ public class CreateEventActivity extends AppCompatActivity {
     Evento eventoEditar;
     EditText nombre,responsable,descripcion,aula,fecha,hora;
     Spinner facultad;
+    ImageView imageView;
     Button subirImagenbtn;
     FloatingActionButton crearEvento;
     ActivityResultLauncher<Intent> openImageLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result ->{
         if(result.getResultCode()== Activity.RESULT_OK){
             imageUri=result.getData().getData();
+            Glide.with(CreateEventActivity.this).load(imageUri).into(imageView);
         }
     });
 
@@ -68,6 +72,7 @@ public class CreateEventActivity extends AppCompatActivity {
         System.out.println(editar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
+        imageView = findViewById(R.id.imageView_crear_evento);
         nombre = findViewById(R.id.CEvent_Nombre);
         responsable = findViewById(R.id.CEvent_Responsable);
         descripcion =  findViewById(R.id.CEvent_Descripcion);
@@ -88,6 +93,8 @@ public class CreateEventActivity extends AppCompatActivity {
             aula.setText(eventoEditar.getAula());
             fecha.setText(eventoEditar.getFecha());
             hora.setText(eventoEditar.getHora());
+            StorageReference imageRef = storageReference.child("img/"+eventoEditar.getFilename());
+            Glide.with(CreateEventActivity.this).load(imageRef).into(imageView);
         }
 
         subirImagenbtn.setOnClickListener(new View.OnClickListener() {
@@ -130,6 +137,8 @@ public class CreateEventActivity extends AppCompatActivity {
                             //Consultamos un API que mande el correo con QR
 
                             Toast.makeText(CreateEventActivity.this, "Data Actualizada correctamente", Toast.LENGTH_SHORT).show();
+                            Intent intent1 = new Intent(CreateEventActivity.this,AdminMainActivity.class);
+                            startActivity(intent1);
                         }else{
                             //Creacion
                             System.out.println("deberia llegar aqui");
@@ -144,7 +153,7 @@ public class CreateEventActivity extends AppCompatActivity {
                                 //Actividad actividad = new Actividad(fechaFin.getText().toString(),horaFin.getText().toString(),fechaInicio.getText().toString(),horaInicio.getText().toString(),titulo.getText().toString(),descripcion.getText().toString(),filename,keyActividad);
                                 Evento evento = new Evento(nombre.getText().toString(),responsable.getText().toString(),descripcion.getText().toString(),facultad.getSelectedItem().toString(),aula.getText().toString(),fecha.getText().toString(),hora.getText().toString(),filename,keyActividad);
                                 databaseReference.child(keyActividad).setValue(evento);
-                                String url = "http://ec2-44-202-0-5.compute-1.amazonaws.com/";
+                                String url = "http://ec2-52-90-220-229.compute-1.amazonaws.com/";
                                 System.out.println(url);
                                 System.out.println(responsable.getText().toString());
                                 RequestQueue queue = Volley.newRequestQueue(CreateEventActivity.this);
@@ -173,6 +182,7 @@ public class CreateEventActivity extends AppCompatActivity {
                                 aula.setText("");
                                 fecha.setText("");
                                 hora.setText("");
+                                imageView.setImageBitmap(null);
                                 imageUri = null;
                                 Toast.makeText(CreateEventActivity.this, "Data Añadida correctamente", Toast.LENGTH_SHORT).show();
                             }else{

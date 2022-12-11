@@ -183,6 +183,7 @@ public class ClientMainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.cerrar_sesion:
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("EPUCP");
                 AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

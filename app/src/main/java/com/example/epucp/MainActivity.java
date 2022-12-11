@@ -167,5 +167,34 @@ public class MainActivity extends AppCompatActivity {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().isEmailVerified()){
+            FirebaseDatabase.getInstance().getReference().child("usuario").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot children: snapshot.getChildren()) {
+                        Usuario usuario = children.getValue(Usuario.class);
+                        if (usuario.getCorreo().equals(firebaseAuth.getCurrentUser().getEmail())) {
+                            if (usuario.getRol().equals("administrador")) {
+                                Intent intent = new Intent(MainActivity.this, AdminMainActivity.class);
+                                startActivity(intent);
+                            } else {
+                                Intent intent = new Intent(MainActivity.this, ClientMainActivity.class);
+                                intent.putExtra("key", usuario.getKey());
+                                startActivity(intent);
+                            }
+                        }
+                    }
+                }
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+
+    }
 }
